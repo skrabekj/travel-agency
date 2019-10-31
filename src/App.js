@@ -44,11 +44,12 @@ class App extends React.Component {
         <MainLayout>
           <AnimatedSwitch
             location={location}
-            atEnter={{ opacity: 0, offset: -200 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
+            atEnter={{ opacity: 0, offset: -200}}
+            atLeave={{ opacity: 0,  offset: -200  }}
+            atActive={{ opacity: 1, offset: 0 }}
             mapStyles={(styles) => ({
-              transform: `translateY(${styles.offset}px)`,
+              opacity: styles.opacity,
+              transform:  `translateY(${styles.offset}px)` ,
             })}
           >
             <Route exact path='/' component={Home} />
