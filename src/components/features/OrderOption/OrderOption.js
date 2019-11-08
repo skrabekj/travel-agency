@@ -31,18 +31,3 @@ const OrderOption = ({ type, name, ...otherProps} ) => {
 };
 
 export default OrderOption;
-
-/*const OrderOption = (props) => {
-  return (
-    <div className={styles.component}>
-      <h3 className={styles.title}> {props.option.name} </h3>
-    </div>
-  );
-};*/
-
-//OrderOption.propTypes = {
-//option: PropTypes.object,
-//name: PropTypes.string,
-//};
-//...otherProps
-//{ type, name, ...otherProps}

@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import OrderOption from '../OrderOption/OrderOption.js';
 import Pricing from '../../../data/pricing.json';
 
-//console.log(Pricing);
+console.log(Pricing);
+
 const OrderForm =  (props) => (
   <Row>
-    {Pricing.map((option) => (
+    {Pricing.map((option, setOrderOption) => (
       <Col md={4} key={option.id}>
-        <OrderOption {...option}/>
+        <OrderOption {...option} currentValue={option.id} setOrderOption={setOrderOption} />
       </Col>
     ))}
     <Col xs={12}>
