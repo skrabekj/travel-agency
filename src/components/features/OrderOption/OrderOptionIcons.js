@@ -4,22 +4,26 @@ import styles from './OrderOption.scss';
 import Icon from '../../common/Icon/Icon.js';
 import {formatPrice} from '../../../utils/formatPrice.js';
 
-const OrderOptionIcon = (values, setOptionValue, props) => (
+const OrderOptionIcon = props => (
   <div className={styles.icon}>
-    {values.map(value => (
-
-      <div key={value.id}
-        className={styles.icon, styles.iconActive}
-        onClick={event=> setOptionValue(event.currentTarget.value)}>
-        <Icon name={props.name}> {value.name} ({formatPrice(value.price)})</Icon>
+    {props.values.map(value => (
+      <div
+        key={value.id}
+        className={`${styles.icon}
+          ${props.currentValue === value.id ? styles.iconActive : ''}`}
+        onClick={() => props.setOptionValue(value.id)}
+      >
+        <Icon name={value.icon} />
+        {value.name} ({formatPrice(value.price)})
       </div>
-
     ))}
   </div>
 );
 
 OrderOptionIcon.propTypes = {
-  name: PropTypes.string,
+  values: PropTypes.array,
+  currentValue: PropTypes.string,
+  setOptionValue: PropTypes.func,
 };
 
 export default OrderOptionIcon;

@@ -13,9 +13,9 @@ const optionTypes = {
   number: OrderOptionNumber,
 };
 
-const OrderOption = ({ type, name, ...otherProps} ) => {
+const OrderOption = ({ id, type, name, setOrderOption, ...otherProps }) => {
   const OptionComponent = optionTypes[type];
-  if(!OptionComponent){
+  if (!OptionComponent) {
     return null;
   } else {
     return (
@@ -23,6 +23,7 @@ const OrderOption = ({ type, name, ...otherProps} ) => {
         <h3 className={styles.title}>{name}</h3>
         <OptionComponent
           name={name}
+          setOptionValue={value => setOrderOption({ [id]: value })}
           {...otherProps}
         />
       </div>
