@@ -1,40 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './OrderOption.scss';
-import {formatPrice} from '../../../utils/formatPrice.js';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
 
-const newValueSet = (currentValue, id, checked) => {
-  if(checked){
-    return [
-      ...currentValue,
-      id,
-    ];
-  } else {
-    return currentValue.filter(value => value != id);
+class OrderOptionDate extends React.Component {
+  static propTypes = {
+    setOptionValue: PropTypes.any,
+  };
+
+  state = {
+    startDate: new Date(),
+  };
+
+  handleChange = date => {
+    const { setOptionValue } = this.props;
+
+    this.setState(
+      {
+        startDate: date,
+      },
+      () => {
+        setOptionValue(date);
+      },
+    );
+  };
+
+  render() {
+    return (
+      <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange}
+      />
+    );
   }
-};
+}
 
-const OrderOptionCheckboxes = ({values, currentValue, setOptionValue }) => (
-  <div className={styles.checkboxes}>
-    <div className={styles.checkboxes}>
-      {values.map(value => (
-        <label key={value.id}>
-          <input
-            type="checkbox"
-            value={value.id}
-            onChange={event => setOptionValue(newValueSet(currentValue, value.id, event.currentTarget.checked))}>
-          </input>
-          {value.name} {formatPrice(value.price)}
-        </label>
-      ))}
-    </div>
-  </div>
-);
-
-OrderOptionCheckboxes.propTypes = {
-  values: PropTypes.array,
-  currentValue: PropTypes.string,
-  setOptionValue: PropTypes.func,
-};
-
-export default OrderOptionCheckboxes;
+export default OrderOptionDate;
