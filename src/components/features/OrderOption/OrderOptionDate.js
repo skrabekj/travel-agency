@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
 
 class OrderOptionDate extends React.Component {
   static propTypes = {
-    setOptionValue: PropTypes.any,
+    setOptionValue: PropTypes.func,
   };
 
   state = {
