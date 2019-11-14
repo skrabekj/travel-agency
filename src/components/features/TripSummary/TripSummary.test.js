@@ -29,7 +29,7 @@ describe('Component TripSummary', () => {
     expect(component.find('.details span').at(0).text()).toEqual(`${5} days`);
     expect(component.find('.details span').at(1).text()).toEqual(`from ${'99'}`);
     expect(component.find('.title').text()).toEqual('Lorem Ipsum');
-    console.log(component.debug());
+    //console.log(component.debug());
   });
 
   /*it('should throw error without required props', () => {
