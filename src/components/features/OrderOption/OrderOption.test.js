@@ -152,6 +152,30 @@ describe('Component OrderOption', () => {
           });
           break;
         }
+        case 'text': {
+          it('should renders inputs with type text', () => {
+            const input = renderedSubcomponent.find('input');
+            expect(input.prop('type')).toBe('text');
+          });
+
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent
+              .find('input')
+              .simulate('change', {currentTarget: {value: testValue}});
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({
+              [mockProps.id]: testValue,
+            });
+          });
+          break;
+        }
+        case 'date': {
+          it('should render DatePicker', () => {
+            const datePicker = renderedSubcomponent.find('DatePicker');
+            expect(datePicker).toBeTruthy();
+          });
+          break;
+        }
       }
     });
   }
