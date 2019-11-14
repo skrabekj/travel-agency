@@ -56,7 +56,7 @@ describe('Component OrderOption', () => {
   };
 
   const testValue = mockProps.values[1].id;
-  //const testValueNumber = 3;
+  const testValueNumber = 3;
 
   for(let type in optionTypes){
     describe(`Component OrderOption with type=${type}`, () => {
@@ -114,6 +114,41 @@ describe('Component OrderOption', () => {
           it('should render div with icon', () => {
             const div = renderedSubcomponent.find('.icon');
             expect(div).toBeTruthy();
+          });
+          break;
+        }
+        case 'checkboxes': {
+          it('should render inputs with type checkbox', () => {
+            const input = renderedSubcomponent.find('input');
+            expect(input.at(0).prop('type')).toBe('checkbox');
+          });
+
+          it('should run setOrderOption function on change', () => {
+            const input = renderedSubcomponent.find('input');
+            expect(input.at(1).prop('value')).toBe(testValue);
+            input.at(1)
+              .simulate('change', { currentTarget: { checked: true } });
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({
+              [mockProps.id]: [mockProps.currentValue, testValue],
+            });
+          });
+          break;
+        }
+        case 'number': {
+          it('should renders inputs with type number', () => {
+            const input = renderedSubcomponent.find('input');
+            expect(input.at(0).prop('type')).toBe('number');
+          });
+
+          it('should run setOrderOption function on change', () => {
+            renderedSubcomponent.find('input').simulate('change', {
+              currentTarget: { value: testValueNumber },
+            });
+            expect(mockSetOrderOption).toBeCalledTimes(1);
+            expect(mockSetOrderOption).toBeCalledWith({
+              [mockProps.id]: testValue,
+            });
           });
           break;
         }
