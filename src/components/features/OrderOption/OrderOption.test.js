@@ -7,7 +7,7 @@ describe('Component OrderOption', () => {
     const component = shallow(
       <OrderOption name='Lorem ipsum' type='type' />);
     expect(component).toBeTruthy();
-    console.log(component.debug());
+    //console.log(component.debug());
   });
   it('should return empty object if called without required props', () => {
     const component = shallow(<OrderOption />);
@@ -78,8 +78,8 @@ describe('Component OrderOption', () => {
         );
         subcomponent = component.find(optionTypes[type]);
         renderedSubcomponent = subcomponent.dive();
-        console.log(component.debug());
-        console.log(subcomponent.debug());
+        //console.log(component.debug());
+        //console.log(subcomponent.debug());
       });
       /* common tests */
       it(`renders ${optionTypes[type]}`, () => {

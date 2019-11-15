@@ -2,5 +2,11 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
+console.error = err => {
+  throw new Error(err);
+};
+console.warning = err => {
+  throw new Error(err);
+};
 
 configure({ adapter: new Adapter() });
